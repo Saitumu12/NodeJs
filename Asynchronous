@@ -1,0 +1,23 @@
+const fs = require('fs').promises;
+
+function readFileAsync(filePath) {
+    return fs.readFile(filePath, 'utf8');
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function runAsyncTasks() {
+    try {
+        console.log("Starting async tasks...");
+        await delay(2000);
+        console.log("After 2-second delay...");
+        const data = await readFileAsync('sample.txt');
+        console.log("File content:", data);
+    } catch (error) {
+        console.error("Error occurred:", error);
+    }
+}
+
+runAsyncTasks();
